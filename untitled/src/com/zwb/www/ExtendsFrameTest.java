@@ -9,7 +9,7 @@ import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.Iterator;
 import  java.util.List;
-
+import java.util.Random;
 
 /**
  * @Package: com.zwb.www
@@ -20,9 +20,11 @@ import  java.util.List;
  */
 public class ExtendsFrameTest extends Frame {
   //生成一个主坦克
-    TanKe mytanke=new TanKe(200,200,Dir.DOWN,this);
+    TanKe mytanke=new TanKe(200,700,Dir.DOWN,Group.RED,this);
     //生成炮弹
     List<Bullet> bullets=new ArrayList<Bullet>();
+    //生成敌方坦克
+    List<TanKe> enemies=new ArrayList<TanKe>();
     //banckground size
     static final int GAME_WIDTH=1000,GAME_HEIGHT=1000;
     //构造方法
@@ -69,12 +71,18 @@ public class ExtendsFrameTest extends Frame {
      Color c=g.getColor();
      g.setColor(Color.WHITE);
      g.drawString("炮弹的数量:"+bullets.size(),10,50);
+     g.drawString("敌人的数量:"+enemies.size(),10,70);
      g.setColor(c);
     //让坦克自己画自己
      mytanke.paint(g);
      //让炮弹自己画自己
      for(int i=0;i< bullets.size();i++){
          this.bullets.get(i).paint(g);
+     }
+     //画敌方若干辆敌方坦克
+     for (int j=0;j<enemies.size();j++){
+            enemies.get(j).paint(g);
+
      }
      //迭代器删除子弹方法
      /*for(Iterator<Bullet> it=bullets.iterator();it.hasNext();){
@@ -83,6 +91,12 @@ public class ExtendsFrameTest extends Frame {
              it.remove();
          }
      }*/
+     for(int i=0;i<bullets.size();i++){
+         for (int j=0;j<enemies.size();j++){
+             bullets.get(i).crash(enemies.get(j));
+         }
+
+     }
 
  }
 
@@ -172,6 +186,8 @@ public class ExtendsFrameTest extends Frame {
 
      }
         }
+
+
 }
 
 

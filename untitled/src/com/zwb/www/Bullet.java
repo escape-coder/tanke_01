@@ -7,26 +7,37 @@ import java.awt.*;
  * @ClassName: Bullet
  * @Author: Mr.Zhang
  * @CreateTime: 2021/1/15 23:06
- * @Description:
+ * @Description:炮弹类
  */
 public class Bullet extends Frame {
+    //炮弹位置
     private int x,y;
+    //炮弹长宽
     private static final int HEIGHT=10,WIDTH=10;
+    //方向
     private Dir dir;
+    //炮弹速度
     private  static final int SPEED=20;
+   //炮弹生命
     private  boolean pd_lives=true;
+    //窗体
     ExtendsFrameTest eft=null;
+    //敌我标识
+    private Group group=Group.BLUE;
     //private static final int bullet_width=ResourceManger.bulletD.getWidth();
     //private static final int bullet_height=ResourceManger.bulletD.getHeight();
-    public  Bullet(int x,int y,Dir dir,ExtendsFrameTest eft){
+    //炮弹构造方法
+    public  Bullet(int x,int y,Dir dir,Group group,ExtendsFrameTest eft){
         this.x=x;
         this.y=y;
         this.dir=dir;
+        this.group=group;
         this.eft=eft;
     }
     public boolean isPd_lives() {
         return pd_lives;
     }
+    //重写的paint方法
     @Override
     public  void  paint(Graphics g){
         if (!this.pd_lives){
@@ -76,6 +87,28 @@ public class Bullet extends Frame {
                     break;
             }
 
+    }
+
+    //碰撞检测
+     void crash(TanKe tanKe){
+        if(this.group==tanKe.getGroup()) return;
+       //分别创建一个覆盖坦克和炮弹的矩形对象
+        Rectangle bulletRe=new Rectangle(this.x,this.y,WIDTH,HEIGHT);
+        Rectangle tankeRe=new Rectangle(tanKe.getX(),tanKe.getY(),tanKe.getTank_width(),tanKe.getTank_height());
+        //判断两者是否相撞
+         if(bulletRe.intersects(tankeRe)){
+            //坦克毁灭，炮弹毁灭
+             tanKe.die();
+             this.die();
+
+
+         }
+
+    }
+//炮弹毁灭
+
+    private void die() {
+     this.pd_lives=false;
     }
 
 }

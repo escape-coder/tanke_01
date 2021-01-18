@@ -34,6 +34,10 @@ public class TestJavase_day01{
 
         //调用继承Frame类的ExtendsFrameTest类实现能画图的窗口
         ExtendsFrameTest e=new ExtendsFrameTest();
+        //初始化若干两敌方坦克
+        for(int i=0;i<5;i++){
+         e.enemies.add(new TanKe(100+i*80,200,Dir.DOWN,Group.BLUE,e));
+        }
         while(true){
            Thread.sleep(50);
             e.repaint();
