@@ -1,5 +1,6 @@
 package test;
 
+import com.zwb.www.ResourceManger;
 import org.junit.Assert;
 import sun.awt.image.BufferedImageDevice;
 
@@ -19,8 +20,11 @@ import static org.junit.Assert.*;
  * @Description:my picture test class
  */
 public class Test {
+    public static BufferedImage[] explodImage=new BufferedImage[16];
         @org.junit.Test
       public void test(){
+
+
           assertNotNull(new Object());
             try {
                 BufferedImage image= ImageIO.read(new File("D:/我的照片/IMG_20200710_132121.jpg"));
@@ -29,6 +33,9 @@ public class Test {
                 BufferedImage image1=ImageIO.read(this.getClass().getClassLoader().getResourceAsStream("images/IMG_20200710_132121.jpg"));
                 //pathname为相对路径，this.getClass可以换成Test.Class
                 assertNotNull(image1);
+                for(int i=0;i<16;i++){
+                    explodImage[i]=ImageIO.read(ResourceManger.class.getClassLoader().getResourceAsStream("images/e"+(i+1)+".gif"));
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }

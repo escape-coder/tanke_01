@@ -14,7 +14,7 @@ import java.io.IOException;
 public class ResourceManger {
     public static BufferedImage tankU,tankD,tankL,tankR;
     public static BufferedImage bulletU,bulletD,bulletL,bulletR;
-    public static BufferedImage[] explodImage;
+    public static BufferedImage[] explodImage=new BufferedImage[16];
 
     static {
         try {
@@ -28,7 +28,7 @@ public class ResourceManger {
             bulletL=ImageIO.read(ResourceManger.class.getClassLoader().getResourceAsStream("images/bulletL.gif"));
             bulletR=ImageIO.read(ResourceManger.class.getClassLoader().getResourceAsStream("images/bulletR.gif"));
             for(int i=1;i<17;i++){
-                explodImage[i]=ImageIO.read(ResourceManger.class.getClassLoader().getResourceAsStream("images/e"+i+".gif"));
+                explodImage[i-1]=ImageIO.read(ResourceManger.class.getClassLoader().getResourceAsStream("images/e"+i+".gif"));
             }
 
         } catch (IOException e) {

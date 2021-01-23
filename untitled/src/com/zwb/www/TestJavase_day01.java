@@ -36,7 +36,7 @@ public class TestJavase_day01{
         ExtendsFrameTest e=new ExtendsFrameTest();
         //初始化若干两敌方坦克
         for(int i=0;i<5;i++){
-         e.enemies.add(new TanKe(100+i*80,200,Dir.DOWN,Group.BLUE,e));
+         e.enemies.add(new TanKe(100+i*80,50,Dir.DOWN,Group.BLUE,e));
         }
         while(true){
            Thread.sleep(50);

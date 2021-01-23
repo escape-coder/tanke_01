@@ -35,8 +35,8 @@ public class TanKe extends Frame {
     //随机对象
     private Random random=new Random();
     //坦克长和宽
-     static final int tank_width=ResourceManger.tankD.getWidth();
-     static final int tank_height=ResourceManger.tankD.getHeight();
+    static final int tank_width=ResourceManger.tankD.getWidth();
+    static final int tank_height=ResourceManger.tankD.getHeight();
 
 
     public void setTk_moving(boolean tk_moving) {
@@ -125,21 +125,21 @@ public class TanKe extends Frame {
         if(!this.tk_moving) return;
         switch (dir) {
             case LEFT:
-                x -= 10;
+                x -= 7;
                 break;
             case RIGHT:
-                x += 10;
+                x += 7;
                 break;
             case UP:
-                y -= 10;
+                y -= 7;
                 break;
             case DOWN:
-                y += 10;
+                y += 7;
             default:
                 break;
     }
     //根据随机值开火
-        if(random.nextInt(10)>7){
+        if(random.nextInt(10)>8&&this.group==Group.BLUE){
             this.fire();
         }
 
